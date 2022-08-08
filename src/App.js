@@ -1,19 +1,15 @@
 import React from 'react';
 import './App.css';
+import Header from './components/Header';
+import Navbar from './components/Navbar';
+import Profile from './components/Profile';
 
 const App = () => {
   return (
     <div className='app-wrapper'>
-      <header className='header'>
-        <img src='https://www.meme-arsenal.com/memes/5ccc9b0b8134a0d77109dda7baf6cc10.jpg'></img>
-      </header>
-      <nav className='nav'>
-        <div>Profile</div>
-        <div>Message</div>
-      </nav>
-      <div className='content'>
-        Main content
-      </div>
+      <Header />
+      <Navbar />
+      <Profile />
     </div>
   )
 };
