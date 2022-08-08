@@ -2,6 +2,14 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
+let postsData = [
+    {message: 'Hi, how ara you?', like: 15},
+    {message: 'My first post', like: 20}
+];
+
+let postsElements = postsData
+    .map(post => <Post message={post.message} like={post.like} />);
+
 const MyPosts = () => {
     return(
         <div className={s.postsBlock}>
@@ -15,8 +23,7 @@ const MyPosts = () => {
                 </div>
             </div>
             <div className={s.posts}>
-                <Post  message='Hi, how are you?' like='15' />
-                <Post message='My first post' like='20' />
+                { postsElements }
             </div>
         </div>
     );
