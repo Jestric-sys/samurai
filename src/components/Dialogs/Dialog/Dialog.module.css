@@ -1,0 +1,17 @@
+.dialog {
+    width: 100%;
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.dialog a {
+    text-decoration: none;
+    color: black;
+}
+
+.dialog .active {
+    text-decoration: none;
+    color: gold;
+}
