@@ -1,9 +1,4 @@
-.content {
-    grid-area: c;
-    background-color: brown;
-}
-
-.content_header img {
+.profile_header img {
     width: 100%;
     height: 250px;
 }
