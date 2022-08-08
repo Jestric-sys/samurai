@@ -1,0 +1,13 @@
+.friendsBlock {
+    margin-top: 100px;
+}
+
+.friend {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    color: white;
+    font-size: 26px;
+}
