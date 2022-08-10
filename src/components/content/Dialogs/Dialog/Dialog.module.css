@@ -1,0 +1,27 @@
+.dialog {
+    width: 100%;
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.dialog a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+}
+
+.dialog .active {
+    text-decoration: none;
+    color: gold;
+}
+
+.avatarLogo {
+    margin-right: 5px;
+}
+
+.avatarLogo img {
+    width: 20px;
+    border-radius: 50%;
+}

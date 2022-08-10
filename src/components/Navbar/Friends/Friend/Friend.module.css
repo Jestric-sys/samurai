@@ -1,0 +1,32 @@
+.friendLink {
+    text-decoration: none;
+    margin: 5px;
+}
+
+.avatar {
+    margin-top: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.avatar:hover {
+    background-color: gold;
+}
+
+.avatar:active {
+    background-color: transparent;
+}
+
+.avatar img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.name {
+    color: white;
+}

@@ -1,0 +1,10 @@
+{
+    "apps": [
+        {
+            "name": "react",
+            "script": "npx",
+            "interpreter": "none",
+            "args": "serve -l tcp://127.0.0.10:3000 ./build/"
+        }
+    ]
+}

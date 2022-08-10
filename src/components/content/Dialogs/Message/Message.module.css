@@ -1,0 +1,17 @@
+.message {
+    background-color: aqua;
+    border: 2px solid black;
+    margin: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    width: fit-content;
+    position: relative;
+}
+
+.message::after {
+    content: ''; 
+    position: absolute;
+    left: 0; bottom: -16px;
+    border: 5px solid transparent;
+    border-top: 10px solid black;
+}
