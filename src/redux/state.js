@@ -24,4 +24,14 @@ const state = {
     }
 };
 
+export const addPost = (postMessage) => {
+    let newPost = {
+        id: 5,
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPFJ__HxmXSqCktfWMBg3XNM8n9vVkCr5tsQ&usqp=CAU',
+        message: postMessage,
+        like: 0
+    };
+    state.profilePage.posts.push(newPost);
+};
+
 export default state;
