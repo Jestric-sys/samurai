@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
-import { addMessageActionCreator, updateNewMessageTextActionCreator } from '../../../redux/state';
+import { addMessageActionCreator, updateNewMessageTextActionCreator } from '../../../redux/message-reducer';
 
 const Dialogs = (props) => {
     const message = React.createRef();
@@ -32,7 +32,7 @@ const Dialogs = (props) => {
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 export default Dialogs;
