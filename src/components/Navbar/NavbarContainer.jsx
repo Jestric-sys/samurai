@@ -1,10 +1,15 @@
 import React from 'react';
 import Navbar from './Navbar';
+import StoreContext from '../../StoreContext';
 
-const NavbarContainer = (props) => {
-    const state = props.store.getState();
+const NavbarContainer = () => {
     return (
-        <Navbar sidebar={state.sidebar} />
+        <StoreContext.Consumer>
+            {(store) => {
+                const state = store.getState().sidebar;
+                return <Navbar sidebar={state} />
+            }}
+        </StoreContext.Consumer>
     );
 };
 
