@@ -3,13 +3,17 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
-    const postsElements = props.posts.map(post => <Post key={post.id} state={post} />);
+    const postsElements = props.profilePage.posts.map(post => <Post key={post.id} post={post} />);
 
     const newPostElement = React.createRef();
 
     const sendPost = () => {
+        props.addPost();
+    };
+
+    const onPostChange = () => {
         const text = newPostElement.current.value;
-        props.addPost(text);
+        props.updateNewPostText(text);
     };
 
     return(
@@ -17,7 +21,7 @@ const MyPosts = (props) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea onChange={onPostChange} ref={newPostElement} value={props.profilePage.newPostText} />
                 </div>
                 <div>
                     <button onClick={sendPost}>Add post</button>
