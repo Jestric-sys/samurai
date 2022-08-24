@@ -37,13 +37,16 @@ const messageReducer = (state = initialState, action) => {
                 id: +(new Date()),
                 message: state.newMessageText
             };
-            state.messages.push(newMessage);
-            state.newMessageText = '';
-            return state;
+            const stateCopy = {...state};
+            stateCopy.messages = [...state.messages];
+            stateCopy.messages.push(newMessage);
+            stateCopy.newMessageText = '';
+            return stateCopy;
         };
         case ACTION.UPDATE_NEW_MESSAGE_TEXT: {
-            state.newMessageText = action.newText;
-            return state;
+            const stateCopy = {...state};
+            stateCopy.newMessageText = action.newText;
+            return stateCopy;
         };
         default: {
             return state;
