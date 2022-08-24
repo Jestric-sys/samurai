@@ -25,13 +25,10 @@ const store = {
             ]
         }
     },
-    getState() {
-        return this._state;
-    },
     _callSubscriber() {
         console.error('Not subscribe');
     },
-    addPost() {
+    _addPost() {
         let newPost = {
             id: +(new Date()),
             img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPFJ__HxmXSqCktfWMBg3XNM8n9vVkCr5tsQ&usqp=CAU',
@@ -42,13 +39,24 @@ const store = {
         this._state.profilePage.newPostText = '';
         this._callSubscriber(this._state);
     },
-    updateNewPostText(newText) {
-        console.log(this._state);
+    _updateNewPostText(newText) {
         this._state.profilePage.newPostText = newText;
         this._callSubscriber(this._state);
     },
+
+    getState() {
+        return this._state;
+    },
     subscribe(observer) {
         this._callSubscriber = observer; // Наблюдатель
+    },
+
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            this._addPost();
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._updateNewPostText(action.newText);
+        };
     }
 };
 
