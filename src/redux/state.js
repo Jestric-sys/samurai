@@ -1,3 +1,10 @@
+const ACTION = {
+    ADD_POST: 'ADD-POST',
+    UPDATE_NEW_POST_TEXT: 'UPDATE-NEW-POST-TEXT',
+    ADD_MESSAGE: 'ADD-MESSAGE',
+    UPDATE_NEW_MESSAGE_TEXT: 'UPDATE-NEW-MESSAGE-TEXT'
+};
+
 const store = {
     _state: {
         profilePage: {
@@ -22,14 +29,15 @@ const store = {
                 {id: 1, message: 'Hi'},
                 {id: 2, message: 'Hou ara you?'},
                 {id: 3, message: 'Welcome new chat'}
-            ]
+            ],
+            newMessageText: 'berserk'
         }
     },
     _callSubscriber() {
         console.error('Not subscribe');
     },
     _addPost() {
-        let newPost = {
+        const newPost = {
             id: +(new Date()),
             img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPFJ__HxmXSqCktfWMBg3XNM8n9vVkCr5tsQ&usqp=CAU',
             message: this._state.profilePage.newPostText,
@@ -43,6 +51,19 @@ const store = {
         this._state.profilePage.newPostText = newText;
         this._callSubscriber(this._state);
     },
+    _sendMessage() {
+        const newMessage = {
+            id: +(new Date()),
+            message: this._state.messagePage.newMessageText
+        };
+        this._state.messagePage.messages.push(newMessage);
+        this._state.messagePage.newMessageText = '';
+        this._callSubscriber(this._state);
+    },
+    _updateNewMessageText(newText) {
+        this._state.messagePage.newMessageText = newText;
+        this._callSubscriber(this._state);
+    },
 
     getState() {
         return this._state;
@@ -52,12 +73,51 @@ const store = {
     },
 
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            this._addPost();
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._updateNewPostText(action.newText);
+        switch (action.type) {
+            case ACTION.ADD_POST: {
+                this._addPost();
+                break;
+            };
+            case ACTION.UPDATE_NEW_POST_TEXT: {
+                this._updateNewPostText(action.newText);
+                break;
+            };
+            case ACTION.ADD_MESSAGE: {
+                this._sendMessage();
+                break;
+            };
+            case ACTION.UPDATE_NEW_MESSAGE_TEXT: {
+                this._updateNewMessageText(action.newText);
+                break;
+            };
         };
     }
+};
+
+export const addPostActionCreator = () => {
+    return {
+        type: ACTION.ADD_POST
+    };
+};
+
+export const updateNewPostTextActionCreator = (text) => {
+    return {
+        type: ACTION.UPDATE_NEW_POST_TEXT,
+        newText: text
+    };
+};
+
+export const addMessageActionCreator = () => {
+    return {
+        type: ACTION.ADD_MESSAGE
+    };
+};
+
+export const updateNewMessageTextActionCreator = (text) => {
+    return {
+        type: ACTION.UPDATE_NEW_MESSAGE_TEXT,
+        newText: text
+    };
 };
 
 window.store = store;
