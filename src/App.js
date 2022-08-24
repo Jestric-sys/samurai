@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import Header from './components/Header/Header';
-import Navbar from './components/Navbar/Navbar';
+import NavbarContainer from './components/Navbar/NavbarContainer';
 import Profile from './components/content/Profile/Profile';
-import Dialogs from './components/content/Dialogs/Dialogs';
+import DialogsContainer from './components/content/Dialogs/DialogsContainer';
 import News from './components/content/News/News';
 import Music from './components/content/Music/Music';
 import Settings from './components/content/Settings/Settings';
@@ -14,12 +14,12 @@ const App = (props) => {
     <BrowserRouter>
       <div className='app-wrapper'>
         <Header />
-        <Navbar state={props.state.sidebar} />
+        <NavbarContainer store={props.store} />
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/' element={<Profile profilePage={props.state.profilePage} dispatch={props.dispatch} />} />
-            <Route path='/profile/*' element={<Profile profilePage={props.state.profilePage} dispatch={props.dispatch} />} />
-            <Route path='/dialogs/*' element={<Dialogs state={props.state.messagePage} dispatch={props.dispatch} />} />
+            <Route path='/' element={<Profile store={props.store} />} />
+            <Route path='/profile/*' element={<Profile store={props.store} />} />
+            <Route path='/dialogs/*' element={<DialogsContainer store={props.store} />} />
             <Route path='/news/*' element={<News />} />
             <Route path='/music/*' element={<Music />} />
             <Route path='/settings/*' element={<Settings />} />
@@ -27,7 +27,7 @@ const App = (props) => {
         </div>
       </div>
     </BrowserRouter>
-  )
+  );
 };
 
 export default App;

@@ -3,14 +3,21 @@ import MyPosts from './MyPosts';
 import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../../redux/profile-reducer';
 
 const MyPostsContainer = (props) => {
+    const state = props.store.getState();
     const addPost = () => {
-        props.dispatch(addPostActionCreator());
+        const action = addPostActionCreator()
+        props.store.dispatch(action);
     };
     const updateNewPostText = (text) => {
-        props.dispatch(updateNewPostTextActionCreator(text));
+        const action = updateNewPostTextActionCreator(text);
+        props.store.dispatch(action);
     };
     return (
-        <MyPosts />
+        <MyPosts 
+            profilePage={state.profilePage}
+            addPost={addPost}
+            updateNewPostText={updateNewPostText}
+        />
     );
 };
 
