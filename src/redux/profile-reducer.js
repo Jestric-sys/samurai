@@ -30,6 +30,7 @@ export const updateNewPostTextActionCreator = (text) => {
 
 // Reducer для постов
 const profileReducer = (state = initialState, action) => {
+
     switch (action.type) {
         case ACTION.ADD_POST: {
             const newPost = {
@@ -38,20 +39,21 @@ const profileReducer = (state = initialState, action) => {
                 message: state.newPostText,
                 like: 0
             };
-            const stateCopy = {...state};
-            stateCopy.posts = [...state.posts];
-            stateCopy.posts.push(newPost);
-            stateCopy.newPostText = '';
-            return stateCopy;
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPostText: ''
+            };
         };
         case ACTION.UPDATE_NEW_POST_TEXT: {
-            const stateCopy = {...state};
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
+            return {
+                ...state,
+                newPostText: action.newText
+            };
         };
         default: {
             return state;
-        }
+        };
     };
 };
 

@@ -36,26 +36,28 @@ export const updateNewMessageTextActionCreator = (text) => {
 
 // Reducer для мессенджера
 const messageReducer = (state = initialState, action) => {
+
     switch (action.type) {
         case ACTION.ADD_MESSAGE: {
             const newMessage = {
                 id: +(new Date()),
                 message: state.newMessageText
             };
-            const stateCopy = {...state};
-            stateCopy.messages = [...state.messages];
-            stateCopy.messages.push(newMessage);
-            stateCopy.newMessageText = '';
-            return stateCopy;
+            return {
+                ...state,
+                messages: [...state.messages, newMessage],
+                newMessageText: ''
+            };
         };
         case ACTION.UPDATE_NEW_MESSAGE_TEXT: {
-            const stateCopy = {...state};
-            stateCopy.newMessageText = action.newText;
-            return stateCopy;
+            return {
+                ...state,
+                newMessageText: action.newText
+            };
         };
         default: {
             return state;
-        }
+        };
     };
 };
 
