@@ -1,8 +1,10 @@
+// Словарик для action
 const ACTION = {
     ADD_POST: 'ADD-POST',
     UPDATE_NEW_POST_TEXT: 'UPDATE-NEW-POST-TEXT'  
 };
 
+// Заглушка БД
 const initialState = {
     posts: [
         {id: 1, img: 'https://icons-for-free.com/download-icon-avatar-1320568024619304547_512.png', message: 'Hi, how ara you?', like: 15},
@@ -11,12 +13,14 @@ const initialState = {
     newPostText: 'berserk'
 };
 
+// Action для контейнера для добавления поста
 export const addPostActionCreator = () => {
     return {
         type: ACTION.ADD_POST
     };
 };
 
+// Action для обновления текста в textarea
 export const updateNewPostTextActionCreator = (text) => {
     return {
         type: ACTION.UPDATE_NEW_POST_TEXT,
@@ -24,6 +28,7 @@ export const updateNewPostTextActionCreator = (text) => {
     };
 };
 
+// Reducer для постов
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ACTION.ADD_POST: {
@@ -46,7 +51,7 @@ const profileReducer = (state = initialState, action) => {
         };
         default: {
             return state;
-        };
+        }
     };
 };
 

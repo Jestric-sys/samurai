@@ -1,3 +1,5 @@
+// StoreContext без react-redux
+
 import React from 'react';
 
 const StoreContext = React.createContext(null);

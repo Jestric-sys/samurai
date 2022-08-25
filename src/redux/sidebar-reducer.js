@@ -1,3 +1,4 @@
+// Заглушка для БД
 const initialState = {
     friends: [
         {id: 1, img: 'https://icons-for-free.com/download-icon-avatar-1320568024619304547_512.png', name: 'Denis'},
@@ -6,6 +7,7 @@ const initialState = {
     ]
 };
 
+// Reducer для sidebar раздел friends
 const sidebarReducer = (state = initialState, action) => {
     return state;
 };

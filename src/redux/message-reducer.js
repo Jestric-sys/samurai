@@ -1,8 +1,10 @@
+// Словарик для action
 const ACTION = {
     ADD_MESSAGE: 'ADD-MESSAGE',
     UPDATE_NEW_MESSAGE_TEXT: 'UPDATE-NEW-MESSAGE-TEXT'
 };
 
+// Заглушка БД
 const initialState = {
     messages: [
         {id: 1, message: 'Hi'},
@@ -17,12 +19,14 @@ const initialState = {
     newMessageText: 'berserk'
 };
 
+// Action для контейнера для отправки сообщения
 export const addMessageActionCreator = () => {
     return {
         type: ACTION.ADD_MESSAGE
     };
 };
 
+// Action для обновления текста в textarea
 export const updateNewMessageTextActionCreator = (text) => {
     return {
         type: ACTION.UPDATE_NEW_MESSAGE_TEXT,
@@ -30,6 +34,7 @@ export const updateNewMessageTextActionCreator = (text) => {
     };
 };
 
+// Reducer для мессенджера
 const messageReducer = (state = initialState, action) => {
     switch (action.type) {
         case ACTION.ADD_MESSAGE: {
@@ -50,7 +55,7 @@ const messageReducer = (state = initialState, action) => {
         };
         default: {
             return state;
-        };
+        }
     };
 };
 
