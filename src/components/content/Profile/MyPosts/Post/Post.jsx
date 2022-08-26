@@ -5,10 +5,10 @@ const Post = (props) => {
     return (
         <div>
             <div className={s.item}>
-                <img src={props.state.img} alt="avatar logo" />
-                { props.state.message }
+                <img src={props.post.img} alt="avatar logo" />
+                { props.post.message }
                 <div>
-                    <span>{ props.state.like } like</span>
+                    <span>{ props.post.like } like</span>
                 </div>
             </div>
         </div>

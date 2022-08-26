@@ -4,11 +4,11 @@ import s from './Friend.module.css';
 
 const Friend = (props) => {
     return (
-        <NavLink to={`/dialogs/${props.state.id}`} className={s.friendLink}>
+        <NavLink to={`/dialogs/${props.friend.id}`} className={s.friendLink}>
             <div className={s.avatar}>
-                <img src={props.state.img} alt="avatar logo" />
+                <img src={props.friend.img} alt="avatar logo" />
                 <div>
-                    <span className={s.name}>{props.state.name}</span>
+                    <span className={s.name}>{props.friend.name}</span>
                 </div>
             </div>
         </NavLink>
