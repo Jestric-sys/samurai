@@ -1,3 +1,5 @@
+// Store без redux
+
 import profileReducer from './profile-reducer';
 import messageReducer from './message-reducer';
 import sidebarReducer from './sidebar-reducer';

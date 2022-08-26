@@ -1,4 +1,5 @@
 import Navbar from './Navbar';
+import { setFriendsAC } from '../../redux/sidebar-reducer';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
@@ -8,7 +9,12 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        setFriends: (friends) => {
+            const action = setFriendsAC(friends);
+            dispatch(action);
+        }
+    };
 };
 
 const NavbarContainer = connect(mapStateToProps, mapDispatchToProps)(Navbar);
