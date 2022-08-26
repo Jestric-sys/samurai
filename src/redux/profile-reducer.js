@@ -1,32 +1,23 @@
 // Словарик для action
 const ACTION = {
     ADD_POST: 'ADD-POST',
-    UPDATE_NEW_POST_TEXT: 'UPDATE-NEW-POST-TEXT'  
+    UPDATE_NEW_POST_TEXT: 'UPDATE-NEW-POST-TEXT',
+    SET_POSTS: 'SET-POSTS'
 };
 
 // Заглушка БД
 const initialState = {
-    posts: [
-        {id: 1, img: 'https://icons-for-free.com/download-icon-avatar-1320568024619304547_512.png', message: 'Hi, how ara you?', like: 15},
-        {id: 2, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI3vvVZ-pOGsyhaNEm9s-tm96lh7OGxJrpPQ&usqp=CAU', message: 'My first post', like: 20}
-    ],
+    posts: [],
     newPostText: 'berserk'
 };
 
 // Action для контейнера для добавления поста
-export const addPostActionCreator = () => {
-    return {
-        type: ACTION.ADD_POST
-    };
-};
+export const addPostActionCreator = () => ({type: ACTION.ADD_POST});
 
 // Action для обновления текста в textarea
-export const updateNewPostTextActionCreator = (text) => {
-    return {
-        type: ACTION.UPDATE_NEW_POST_TEXT,
-        newText: text
-    };
-};
+export const updateNewPostTextActionCreator = (newText) => ({type: ACTION.UPDATE_NEW_POST_TEXT, newText});
+
+export const setPostsAC = (posts) => ({type: ACTION.SET_POSTS, posts});
 
 // Reducer для постов
 const profileReducer = (state = initialState, action) => {
@@ -49,6 +40,12 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 newPostText: action.newText
+            };
+        };
+        case ACTION.SET_POSTS: {
+            return {
+                ...state,
+                posts: [...action.posts]
             };
         };
         default: {
