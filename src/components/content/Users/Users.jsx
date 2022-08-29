@@ -4,18 +4,49 @@ import * as axios from 'axios';
 import logo from '../../../assets/images/logo.png';
 
 const Users = (props) => {
-    const getUsers = () => {
-        if (props.users.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
+    if (props.users.length === 0) {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${props.currentPage}&count=${props.pageSize}`)
+            .then(res => {
+                props.setUsers(res.data.items);
+                props.setTotalUsersCount(res.data.totalCount);
+            });
+        // axios.get('http://127.0.0.3:3001/friends')
+        //     .then(res => props.setUsers(res.data.items));
+    };
+
+    function onPageChanged(p) {
+        props.setCurrentPage(p);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${props.pageSize}`)
                 .then(res => props.setUsers(res.data.items));
-            // axios.get('http://127.0.0.3:3001/friends')
-            //     .then(res => props.setUsers(res.data.items));
-        };
+    };
+
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+
+    let pages = [1, props.currentPage - 1, props.currentPage, props.currentPage + 1, pagesCount];
+
+    if (props.currentPage < 4) {
+        pages = [1, 2, 3, 4, pagesCount];
+    };
+
+    if (props.currentPage > pagesCount - 2) {
+        pages = [1, pagesCount - 3, pagesCount - 2, pagesCount - 1, pagesCount];
     };
 
     return (
         <div>
-            <button onClick={getUsers} className={s.button}>Get users</button>
+            <div className={s.pages}>
+                {
+                    pages.map(p => {
+                        return (
+                            <span key={p} onClick={() => onPageChanged(p)} className={props.currentPage === p ? s.selectPage : s.page}>
+                                { p === pagesCount && props.currentPage < pagesCount - 2 && ' ... ' }
+                                { p }
+                                { p === 1 && props.currentPage > 3 && ' ... ' }
+                            </span>
+                        );
+                    })
+                }
+            </div>
             {
                 props.users.map((u) => 
                     <div className={s.friends} key={u.id}>
