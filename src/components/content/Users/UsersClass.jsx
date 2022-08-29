@@ -7,25 +7,18 @@ class Users extends React.Component {
 
     constructor(props) {
         super(props);
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-                .then(res => this.props.setUsers(res.data.items));
-            // axios.get('http://127.0.0.3:3001/friends')
-            //     .then(res => props.setUsers(res.data.items));
     };
 
-    // getUsers = () => {
-    //     if (this.props.users.length === 0) {
-    //         axios.get('https://social-network.samuraijs.com/api/1.0/users')
-    //             .then(res => this.props.setUsers(res.data.items));
-    //         // axios.get('http://127.0.0.3:3001/friends')
-    //         //     .then(res => props.setUsers(res.data.items));
-    //     };
-    // };
+    componentDidMount() {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+                .then(res => this.props.setUsers(res.data.items));
+        // axios.get('http://127.0.0.3:3001/friends')
+        //     .then(res => props.setUsers(res.data.items));
+    };
 
     render() {
         return (
             <div>
-                {/* <button onClick={this.getUsers} className={s.button}>Get users</button> */}
                 {
                     this.props.users.map((u) => 
                         <div className={s.friends} key={u.id}>
