@@ -44,3 +44,34 @@
     padding: 3px;
     border-radius: 5px;
 }
+
+.pages {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+.page {
+    color: white;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.page:hover {
+    cursor: pointer;
+    font-weight: bold;
+    color: black;
+}
+
+.selectPage {
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+}

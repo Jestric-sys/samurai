@@ -4,13 +4,6 @@ import { NavLink } from 'react-router-dom';
 import Friends from './Friends/Friends';
 
 const Navbar = (props) => {
-    if (props.sidebar.friends.length === 0) {
-        props.setFriends([
-            {id: 1, img: 'https://icons-for-free.com/download-icon-avatar-1320568024619304547_512.png', name: 'Denis'},
-            {id: 2, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI3vvVZ-pOGsyhaNEm9s-tm96lh7OGxJrpPQ&usqp=CAU', name: 'Vladimir'},
-            {id: 3, img: 'https://icon-library.com/images/avatar-icon-free/avatar-icon-free-15.jpg', name: 'Tommy'}
-        ]);
-    };
     return (
         <nav className={s.nav}>
             <div className={`${s.item} ${s.active}`}>
@@ -31,7 +24,7 @@ const Navbar = (props) => {
             <div className={s.item}>
                 <NavLink to='/users' className={({ isActive }) => isActive ? s.active : undefined}>Users</NavLink>
             </div>
-            <Friends friends={props.sidebar.friends} />
+            <Friends friends={props.friends} />
         </nav>
     );
 };

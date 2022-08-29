@@ -1,25 +1,18 @@
-// Словарик для action
 const ACTION = {
     ADD_POST: 'ADD-POST',
     UPDATE_NEW_POST_TEXT: 'UPDATE-NEW-POST-TEXT',
     SET_POSTS: 'SET-POSTS'
 };
 
-// Заглушка БД
 const initialState = {
     posts: [],
     newPostText: 'berserk'
 };
 
-// Action для контейнера для добавления поста
-export const addPostActionCreator = () => ({type: ACTION.ADD_POST});
+export const addPost = () => ({type: ACTION.ADD_POST});
+export const updateNewPostText = (newText) => ({type: ACTION.UPDATE_NEW_POST_TEXT, newText});
+export const setPosts = (posts) => ({type: ACTION.SET_POSTS, posts});
 
-// Action для обновления текста в textarea
-export const updateNewPostTextActionCreator = (newText) => ({type: ACTION.UPDATE_NEW_POST_TEXT, newText});
-
-export const setPostsAC = (posts) => ({type: ACTION.SET_POSTS, posts});
-
-// Reducer для постов
 const profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
@@ -36,21 +29,9 @@ const profileReducer = (state = initialState, action) => {
                 newPostText: ''
             };
         };
-        case ACTION.UPDATE_NEW_POST_TEXT: {
-            return {
-                ...state,
-                newPostText: action.newText
-            };
-        };
-        case ACTION.SET_POSTS: {
-            return {
-                ...state,
-                posts: [...action.posts]
-            };
-        };
-        default: {
-            return state;
-        };
+        case ACTION.UPDATE_NEW_POST_TEXT: return { ...state, newPostText: action.newText };
+        case ACTION.SET_POSTS: return { ...state, posts: [...action.posts] };
+        default: return state;
     };
 };
 

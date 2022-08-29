@@ -12,15 +12,8 @@ export const setFriendsAC = (friends) => ({type: ACTION.FRIENDS, friends});
 // Reducer для sidebar раздел friends
 const sidebarReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ACTION.FRIENDS: {
-            return {
-                ...state,
-                friends: [...action.friends]
-            };
-        };
-        default: {
-            return state;
-        };
+        case ACTION.FRIENDS: return { ...state, friends: [...action.friends] };
+        default: return state;
     };
 };
 
