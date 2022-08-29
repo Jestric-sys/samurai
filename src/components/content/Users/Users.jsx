@@ -4,16 +4,18 @@ import * as axios from 'axios';
 import logo from '../../../assets/images/logo.png';
 
 const Users = (props) => {
-
-    if (props.users.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(res => props.setUsers(res.data.items));
-        // axios.get('http://127.0.0.3:3001/friends')
-        //     .then(res => props.setUsers(res.data.items));
+    const getUsers = () => {
+        if (props.users.length === 0) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/users')
+                .then(res => props.setUsers(res.data.items));
+            // axios.get('http://127.0.0.3:3001/friends')
+            //     .then(res => props.setUsers(res.data.items));
+        };
     };
 
     return (
         <div>
+            <button onClick={getUsers} className={s.button}>Get users</button>
             {
                 props.users.map((u) => 
                     <div className={s.friends} key={u.id}>
