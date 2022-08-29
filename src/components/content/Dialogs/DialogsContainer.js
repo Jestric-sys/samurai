@@ -1,6 +1,6 @@
 import React from 'react';
 import Dialogs from './Dialogs';
-import { addMessageAC, updateNewMessageTextAC, setMessagesAC, setDialogsAC } from '../../../redux/message-reducer';
+import { addMessage, updateNewMessageText, setMessages, setDialogs } from '../../../redux/message-reducer';
 import { connect } from 'react-redux';
 
 class DialogsAPIComponent extends React.Component {
@@ -17,8 +17,8 @@ class DialogsAPIComponent extends React.Component {
         ]);
     };
 
-    sendMessage = () => this.props.sendMessage();
-    onChangeMessage = (text) => this.props.updateMessageText(text);
+    sendMessage = () => this.props.addMessage();
+    onChangeMessage = (text) => this.props.updateNewMessageText(text);
 
     render() {
         return <Dialogs 
@@ -30,13 +30,13 @@ class DialogsAPIComponent extends React.Component {
 };
 
 const mapStateToProps = (state) => ({ messagePage: state.messagePage });
-const mapDispatchToProps = (dispatch) => ({
-    sendMessage: () => dispatch(addMessageAC()),
-    updateMessageText: (text) => dispatch(updateNewMessageTextAC(text)),
-    setMessages: (messages) => dispatch(setMessagesAC(messages)),
-    setDialogs: (dialogs) => dispatch(setDialogsAC(dialogs))
-});
+const dispatch = {
+    addMessage,
+    updateNewMessageText,
+    setMessages,
+    setDialogs
+};
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(DialogsAPIComponent);
+const DialogsContainer = connect(mapStateToProps, dispatch)(DialogsAPIComponent);
 
 export default DialogsContainer;

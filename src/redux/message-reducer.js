@@ -11,10 +11,10 @@ const initialState = {
     newMessageText: 'berserk'
 };
 
-export const addMessageAC= () => ({type: ACTION.ADD_MESSAGE});
-export const updateNewMessageTextAC = (newText) => ({type: ACTION.UPDATE_NEW_MESSAGE_TEXT, newText});
-export const setMessagesAC = (messages) => ({type: ACTION.SET_MESSAGES, messages});
-export const setDialogsAC = (dialogs) => ({type: ACTION.SET_DIALOGS, dialogs});
+export const addMessage = () => ({type: ACTION.ADD_MESSAGE});
+export const updateNewMessageText = (newText) => ({type: ACTION.UPDATE_NEW_MESSAGE_TEXT, newText});
+export const setMessages = (messages) => ({type: ACTION.SET_MESSAGES, messages});
+export const setDialogs = (dialogs) => ({type: ACTION.SET_DIALOGS, dialogs});
 
 const messageReducer = (state = initialState, action) => {
     switch (action.type) {

@@ -9,9 +9,9 @@ const initialState = {
     newPostText: 'berserk'
 };
 
-export const addPostActionCreator = () => ({type: ACTION.ADD_POST});
-export const updateNewPostTextActionCreator = (newText) => ({type: ACTION.UPDATE_NEW_POST_TEXT, newText});
-export const setPostsAC = (posts) => ({type: ACTION.SET_POSTS, posts});
+export const addPost = () => ({type: ACTION.ADD_POST});
+export const updateNewPostText = (newText) => ({type: ACTION.UPDATE_NEW_POST_TEXT, newText});
+export const setPosts = (posts) => ({type: ACTION.SET_POSTS, posts});
 
 const profileReducer = (state = initialState, action) => {
 

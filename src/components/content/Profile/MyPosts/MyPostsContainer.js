@@ -1,6 +1,6 @@
 import React from 'react';
 import MyPosts from './MyPosts';
-import { addPostActionCreator, updateNewPostTextActionCreator, setPostsAC } from '../../../../redux/profile-reducer';
+import { addPost, updateNewPostText, setPosts } from '../../../../redux/profile-reducer';
 import { connect } from 'react-redux';
 
 class MyPostsAPIComponent extends React.Component {
@@ -24,12 +24,12 @@ class MyPostsAPIComponent extends React.Component {
 };
 
 const mapStateToProps = (state) => ({ profilePage: state.profilePage });
-const mapDispatchToProps = (dispatch) => ({
-    addPost: () => dispatch(addPostActionCreator()),
-    updateNewPostText: (text) => dispatch(updateNewPostTextActionCreator(text)),
-    setPosts: (posts) => dispatch(setPostsAC(posts))
-});
+const dispatch = {
+    addPost,
+    updateNewPostText,
+    setPosts
+};
 
-const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPostsAPIComponent);
+const MyPostsContainer = connect(mapStateToProps, dispatch)(MyPostsAPIComponent);
 
 export default MyPostsContainer;

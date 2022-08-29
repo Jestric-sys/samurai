@@ -15,12 +15,12 @@ const initialState = {
     isFetching: false
 };
 
-export const followAC = (userId) => ({ type: ACTION.FOLLOW, userId });
-export const unfollowAC = (userId) => ({ type: ACTION.UNFOLLOW, userId });
-export const setUsersAC = (users) => ({ type: ACTION.SET_USERS, users });
-export const setCurrentPageAC = (currentPage) => ({ type: ACTION.SET_CURRENT_PAGE, currentPage });
-export const setTotalUsersCountAC = (totalCount) => ({ type: ACTION.SET_TOTAL_USERS_COUNT, totalCount });
-export const isFetchingAC = (isFetching) => ({ type: ACTION.IS_FETCHING, isFetching });
+export const follow = (userId) => ({ type: ACTION.FOLLOW, userId });
+export const unfollow = (userId) => ({ type: ACTION.UNFOLLOW, userId });
+export const setUsers = (users) => ({ type: ACTION.SET_USERS, users });
+export const setCurrentPage = (currentPage) => ({ type: ACTION.SET_CURRENT_PAGE, currentPage });
+export const setTotalUsersCount = (totalCount) => ({ type: ACTION.SET_TOTAL_USERS_COUNT, totalCount });
+export const fetching = (isFetching) => ({ type: ACTION.IS_FETCHING, isFetching });
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
