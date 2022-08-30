@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Users.module.css';
 import logo from '../../../assets/images/logo.png';
+import but from '../../common/button/Button.module.css';
 
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -42,8 +43,8 @@ let Users = (props) => {
                                     </div>
                                     <div>
                                         { u.followed === true 
-                                            ? <button className={s.button} onClick={() => {props.unfollow(u.id)}} >UnFollow</button> 
-                                            : <button className={s.button} onClick={() => {props.follow(u.id)}}>Follow</button> }
+                                            ? <button className={but.button} onClick={() => {props.unfollow(u.id)}} >UnFollow</button> 
+                                            : <button className={but.button} onClick={() => {props.follow(u.id)}}>Follow</button> }
                                     </div>
                                 </span>
                                 <span className={s.info}>
