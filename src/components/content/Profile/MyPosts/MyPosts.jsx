@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './MyPosts.module.css';
+import but from '../../../common/button/Button.module.css';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
@@ -20,7 +21,7 @@ const MyPosts = (props) => {
                 <div>
                     <button 
                         onClick={() => newPostElement.current.value !== '' ? props.sendPost() : alert('Вы не ввели текст')}
-                        className={s.button}
+                        className={but.button}
                     >Add post</button>
                 </div>
             </div>

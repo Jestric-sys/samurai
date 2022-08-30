@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
+import but from '../../common/button/Button.module.css';
 
 const Dialogs = (props) => {
     const message = React.createRef();
@@ -27,7 +28,7 @@ const Dialogs = (props) => {
                 <div>
                     <button 
                         onClick={() => message.current.value !== '' ? props.sendMessage() : alert('Вы не ввели текст')} 
-                        className={s.button}
+                        className={but.button}
                     >Send message</button>
                 </div>
             </div>
