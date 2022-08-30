@@ -3,7 +3,7 @@ import { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, fetchin
 import { connect } from 'react-redux';
 import * as axios from 'axios';
 import Users from './Users';
-import PreLoader from '../../common/preloader/preloader';
+import PreLoader from '../../common/preloader/Preloader';
 
 class UsersAPIComponent extends React.Component {
 

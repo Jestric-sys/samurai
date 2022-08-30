@@ -6,7 +6,7 @@ import Friends from './Friends/Friends';
 const Navbar = (props) => {
     return (
         <nav className={s.nav}>
-            <div className={`${s.item} ${s.active}`}>
+            <div className={`${s.item}`}>
                 <NavLink to='/profile' className={({ isActive }) => isActive ? s.active : undefined}>Profile</NavLink>
             </div>
             <div className={s.item}>
