@@ -3,13 +3,13 @@ import { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, fetchin
 import { connect } from 'react-redux';
 import * as axios from 'axios';
 import Users from './Users';
-import PreLoader from '../../common/preloader/preloader';
+import PreLoader from '../../common/preloader/Preloader';
 
 class UsersAPIComponent extends React.Component {
 
     componentDidMount() {
         this.props.fetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, { mode: 'no-cors' })
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
                 .then(res => {
                     this.props.fetching(false);
                     this.props.setUsers(res.data.items);
@@ -22,7 +22,7 @@ class UsersAPIComponent extends React.Component {
     onPageChanged = (p) => {
         this.props.setCurrentPage(p);
         this.props.fetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`, { mode: 'no-cors' })
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`)
                 .then(res => {
                     this.props.fetching(false);
                     this.props.setUsers(res.data.items)

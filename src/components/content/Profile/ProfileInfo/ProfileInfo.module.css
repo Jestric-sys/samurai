@@ -1,8 +1,29 @@
 .infoBlock {
+    display: flex;
     padding: 10px;
 }
 
 .profile_header img {
     width: 100%;
     height: 250px;
+}
+
+.profileLogo {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.aboutMe {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.titleAboutMe {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.name {
+    padding: 10px;
 }
