@@ -12,14 +12,12 @@ class HeaderAPIComponent extends React.Component {
         })
             .then(res => { 
                 res.data.resultCode === 1 
-                ? this.props.setAuthUser('Ghost', 'Ghost', 'Ghost') 
+                ? this.props.setAuthUser(null, null, null)
                 : this.props.setAuthUser(res.data.data.id, res.data.data.email, res.data.data.login); 
             });
     };
 
-    render() {
-        return <Header {...this.props} />
-    };
+    render() {return <Header {...this.props} />};
 };
 
 const mapStateToProps = (state) => ({auth: state.auth});
