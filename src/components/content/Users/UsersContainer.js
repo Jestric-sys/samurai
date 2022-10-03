@@ -16,7 +16,8 @@ class UsersAPIComponent extends React.Component {
                     this.props.fetching(false);
                     this.props.setUsers(res.data.items);
                     this.props.setTotalUsersCount(res.data.totalCount);
-                });
+                })
+                .catch(err => console.log(err));
         // axios.get('http://127.0.0.3:3001/friends')
         //     .then(res => props.setUsers(res.data.items));
     };
@@ -28,7 +29,8 @@ class UsersAPIComponent extends React.Component {
                 .then(res => {
                     this.props.fetching(false);
                     this.props.setUsers(res.data.items)
-                });
+                })
+                .catch(err => console.log(err));
     };
 
     render() {

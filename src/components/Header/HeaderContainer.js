@@ -14,7 +14,8 @@ class HeaderAPIComponent extends React.Component {
                 res.data.resultCode === 1 
                 ? this.props.setAuthUser(null, null, null)
                 : this.props.setAuthUser(res.data.data.id, res.data.data.email, res.data.data.login); 
-            });
+            })
+            .catch(err => console.log(err));
     };
 
     render() {return <Header {...this.props} />};

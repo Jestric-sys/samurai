@@ -27,7 +27,8 @@ class ProfileComponent extends React.Component {
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userID}`)
                 .then(res => {
                     this.props.setUserProfile(res.data);
-                });
+                })
+                .catch(err => console.log(err));
     };
 
     render() {

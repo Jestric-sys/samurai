@@ -59,7 +59,8 @@ let Users = (props) => {
                                                         if (res.data.resultCode == 0) {
                                                             props.unfollow(u.id)
                                                         };
-                                                    });
+                                                    })
+                                                    .catch(err => console.log(err));
                                                 
                                             }} >UnFollow</button> 
                                             : <button className={but.button} onClick={() => {
@@ -74,7 +75,8 @@ let Users = (props) => {
                                                         if (res.data.resultCode == 0) {
                                                             props.follow(u.id);
                                                         };
-                                                    });
+                                                    })
+                                                    .catch(err => console.log(err));
                                             }}>Follow</button> }
                                     </div>
                                 </span>
