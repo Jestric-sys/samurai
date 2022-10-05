@@ -4,10 +4,20 @@ import { connect } from 'react-redux';
 import * as axios from 'axios';
 import Users from './Users';
 import PreLoader from '../../common/preloader/Preloader';
+import { setAuthUser } from '../../../redux/auth-reducer';
 
 class UsersAPIComponent extends React.Component {
 
     componentDidMount() {
+        axios.get('https://social-network.samuraijs.com/api/1.0/auth/me', {
+            withCredentials: true
+        })
+            .then(res => {
+                res.data.resultCode === 1
+                ? this.props.setAuthUser(null, null, null)
+                : this.props.setAuthUser(res.data.data.id, res.data.data.email, res.data.data.login);
+            })
+            .catch(err => console.log(err));
         this.props.fetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
             withCredentials: true
@@ -34,19 +44,21 @@ class UsersAPIComponent extends React.Component {
     };
 
     render() {
-        return <>
-                { this.props.isFetching ? <PreLoader /> : null }
-                <Users 
-                    totalUsersCount={this.props.totalUsersCount} 
-                    pageSize={this.props.pageSize} 
-                    currentPage={this.props.currentPage}
-                    onPageChanged={this.onPageChanged}
-                    users={this.props.users}
-                    follow={this.props.follow}
-                    unfollow={this.props.unfollow}
-                    isFetching={this.props.isFetching}
-                />
-                </>
+        return this.props.auth.isAuth && this.props.auth.login !== null
+        ? <>
+            { this.props.isFetching ? <PreLoader /> : null }
+            <Users 
+                totalUsersCount={this.props.totalUsersCount}
+                pageSize={this.props.pageSize}
+                currentPage={this.props.currentPage}
+                onPageChanged={this.onPageChanged}
+                users={this.props.users}
+                follow={this.props.follow}
+                unfollow={this.props.unfollow}
+                isFetching={this.props.isFetching}
+            />
+        </>
+        : <div>Вы не автаризованы</div>
     };
 };
 
@@ -55,7 +67,8 @@ const mapStateToProps = (state) => ({
     pageSize: state.usersPage.pageSize,
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching
+    isFetching: state.usersPage.isFetching,
+    auth: state.auth
 });
 const dispatch = {
     follow,
@@ -63,7 +76,8 @@ const dispatch = {
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
-    fetching
+    fetching,
+    setAuthUser
 };
 
 const UsersContainer = connect(mapStateToProps, dispatch)(UsersAPIComponent);
