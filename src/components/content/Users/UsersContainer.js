@@ -1,5 +1,5 @@
 import React from 'react';
-import { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, fetching } from '../../../redux/users-reducer';
+import { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, fetching, following } from '../../../redux/users-reducer';
 import { connect } from 'react-redux';
 import * as axios from 'axios';
 import Users from './Users';
@@ -56,6 +56,8 @@ class UsersAPIComponent extends React.Component {
                 follow={this.props.follow}
                 unfollow={this.props.unfollow}
                 isFetching={this.props.isFetching}
+                following={this.props.following}
+                followingInProgress={this.props.followingInProgress}
             />
         </>
         : <div>Вы не автаризованы</div>
@@ -68,7 +70,8 @@ const mapStateToProps = (state) => ({
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
-    auth: state.auth
+    auth: state.auth,
+    followingInProgress: state.usersPage.followingInProgress
 });
 const dispatch = {
     follow,
@@ -77,7 +80,8 @@ const dispatch = {
     setCurrentPage,
     setTotalUsersCount,
     fetching,
-    setAuthUser
+    setAuthUser,
+    following
 };
 
 const UsersContainer = connect(mapStateToProps, dispatch)(UsersAPIComponent);

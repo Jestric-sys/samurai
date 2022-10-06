@@ -47,8 +47,8 @@ let Users = (props) => {
                                     </div>
                                     <div>
                                         { u.followed === true 
-                                            ? <button className={but.button} onClick={() => {
-
+                                            ? <button disabled={props.followingInProgress.some(id => id === u.id)} className={but.button} onClick={() => {
+                                                props.following(true, u.id);
                                                 axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
                                                     withCredentials: true,
                                                     headers: {
@@ -59,12 +59,13 @@ let Users = (props) => {
                                                         if (res.data.resultCode == 0) {
                                                             props.unfollow(u.id)
                                                         };
+                                                        props.following(false, u.id);
                                                     })
                                                     .catch(err => console.log(err));
                                                 
                                             }} >UnFollow</button> 
-                                            : <button className={but.button} onClick={() => {
-
+                                            : <button disabled={props.followingInProgress.some(id => id === u.id)} className={but.button} onClick={() => {
+                                                props.following(true, u.id);
                                                 axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
                                                     withCredentials: true,
                                                     headers: {
@@ -75,6 +76,7 @@ let Users = (props) => {
                                                         if (res.data.resultCode == 0) {
                                                             props.follow(u.id);
                                                         };
+                                                        props.following(false, u.id);
                                                     })
                                                     .catch(err => console.log(err));
                                             }}>Follow</button> }
