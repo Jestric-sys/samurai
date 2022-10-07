@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api";
+
 const ACTION = {
     FOLLOW: 'FOLLOW',
     UNFOLLOW: 'UNFOLLOW',
@@ -57,6 +59,36 @@ const usersReducer = (state = initialState, action) => {
         }
         default: return state;
     };
+};
+
+export const getUsersThunkCreator = (currentPage, pageSize) => (dispatch) => {
+    dispatch(fetching(true));
+
+    usersAPI.getUsers(currentPage, pageSize)
+        .then(data => {
+            dispatch(fetching(false));
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount));
+        })
+        .catch(err => console.log(err));
+};
+
+export const unfollowUserThunkCreator = (id) => (dispatch) => {
+    usersAPI.unfollowUser(id)
+        .then(res => {
+            if (res.data.resultCode === 0) dispatch(unfollow(id));
+            dispatch(following(false, id));
+        })
+        .catch(err => console.log(err));
+};
+
+export const followUserThunkCreator = (id) => (dispatch) => {
+    usersAPI.followUser(id)
+        .then(res => {
+            if (res.data.resultCode === 0) dispatch(follow(id));
+            dispatch(following(false, id));
+        })
+        .catch(err => console.log(err));
 };
 
 export default usersReducer;

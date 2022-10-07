@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Profile from './Profile';
-import * as axios from 'axios';
 import { setUserProfile } from '../../../redux/profile-reducer';
-import { setAuthUser } from '../../../redux/auth-reducer';
+import { getAuthUserThunkCreator } from '../../../redux/auth-reducer';
 import { useParams } from 'react-router-dom';
+import { usersAPI } from '../../../api/api';
 
 // hooks
 const withRouter = WrappedComponent => props => {
@@ -21,24 +21,16 @@ const withRouter = WrappedComponent => props => {
 class ProfileComponent extends React.Component {
 
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/auth/me', {
-            withCredentials: true
-        })
-            .then(res => {
-                res.data.resultCode === 1
-                ? this.props.setAuthUser(null, null, null)
-                : this.props.setAuthUser(res.data.data.id, res.data.data.email, res.data.data.login)
-            })
-            .catch(err => console.log(err));
+        this.props.getAuthUserThunkCreator();
         let userID = this.props.params.userID;
         if (!userID) {
             userID = 25638;
         };
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userID}`)
-                .then(res => {
-                    this.props.setUserProfile(res.data);
-                })
-                .catch(err => console.log(err));
+        usersAPI.profileUserID(userID)
+            .then(data => {
+                this.props.setUserProfile(data);
+            })
+            .catch(err => console.log(err));
     };
 
     render() {
@@ -50,7 +42,7 @@ class ProfileComponent extends React.Component {
 
 const mapStateToProps = (state) => ({ profile: state.profilePage.profile, auth: state.auth });
 
-const dispatch = { setUserProfile, setAuthUser };
+const dispatch = { setUserProfile, getAuthUserThunkCreator };
 
 const WithUrlDataContainerComponent = withRouter(ProfileComponent);
 
