@@ -2,7 +2,7 @@ const ACTION = {
     ADD_POST: 'ADD-POST',
     UPDATE_NEW_POST_TEXT: 'UPDATE-NEW-POST-TEXT',
     SET_POSTS: 'SET-POSTS',
-    SET_USER_PROFILE: 'SET-profile-PROFILE'
+    SET_USER_PROFILE: 'SET-USER-PROFILE'
 };
 
 const initialState = {

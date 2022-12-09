@@ -2,6 +2,7 @@ import React from 'react';
 import Settings from './Settings';
 import { getAuthUserThunkCreator } from '../../../redux/auth-reducer';
 import { connect } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
 class SettingsAPIComponent extends React.Component {
     componentDidMount() {
@@ -9,9 +10,8 @@ class SettingsAPIComponent extends React.Component {
     };
 
     render() {
-        return this.props.auth.isAuth && this.props.auth.login !== null
-        ? <Settings />
-        : <div>Вы не автаризованы</div>
+        if (!this.props.auth.isAuth) return <Navigate to={'/login'} />
+        return <Settings />
     };
 };
 

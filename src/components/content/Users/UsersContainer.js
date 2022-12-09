@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Users from './Users';
 import PreLoader from '../../common/preloader/Preloader';
 import { getAuthUserThunkCreator } from '../../../redux/auth-reducer';
+import { Navigate } from 'react-router-dom';
 
 class UsersAPIComponent extends React.Component {
 
@@ -28,8 +29,8 @@ class UsersAPIComponent extends React.Component {
     };
 
     render() {
-        return this.props.auth.isAuth && this.props.auth.login !== null
-        ? <>
+        if (!this.props.auth.isAuth) return <Navigate to={'/login'} />
+        return <>
             { this.props.isFetching ? <PreLoader /> : null }
             <Users 
                 totalUsersCount={this.props.totalUsersCount}
@@ -46,7 +47,6 @@ class UsersAPIComponent extends React.Component {
                 followUser={this.followUser}
             />
         </>
-        : <div>Вы не автаризованы</div>
     };
 };
 

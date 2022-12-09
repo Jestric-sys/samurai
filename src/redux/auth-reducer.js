@@ -15,7 +15,7 @@ export const setAuthUser = (userID, email, login) => ({ type: ACTION.SET_USER_DA
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ACTION.SET_USER_DATA: return {...state, ...action.data, isAuth: true};
+        case ACTION.SET_USER_DATA: return action.data.login ?  {...state, ...action.data, isAuth: true} : {...state};
         default: return state;
     };
 };

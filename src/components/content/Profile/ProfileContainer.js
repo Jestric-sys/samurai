@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Profile from './Profile';
 import { setUserProfile } from '../../../redux/profile-reducer';
 import { getAuthUserThunkCreator } from '../../../redux/auth-reducer';
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import { usersAPI } from '../../../api/api';
 
 // hooks
@@ -34,9 +34,8 @@ class ProfileComponent extends React.Component {
     };
 
     render() {
-        return this.props.auth.isAuth && this.props.auth.login !== null
-        ? <Profile profile={this.props.profile} />
-        : <div>Вы не автаризованы</div>
+        if (!this.props.auth.isAuth) return <Navigate to={'/login'} />
+        return <Profile profile={this.props.profile} />
     };
 };
 

@@ -3,11 +3,13 @@ import s from './Dialogs.module.css';
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
 import but from '../../common/button/Button.module.css';
+import { Navigate } from 'react-router-dom'
 
 const Dialogs = (props) => {
     const message = React.createRef();
     const dialogsElements = props.messagePage.dialogs.map(dialog => <Dialog key={dialog.id} dialog={dialog} />);
     const messageElements = props.messagePage.messages.map(message => <Message key={message.id} message={message} />);
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>

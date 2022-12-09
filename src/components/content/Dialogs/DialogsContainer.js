@@ -3,6 +3,7 @@ import Dialogs from './Dialogs';
 import { addMessage, updateNewMessageText, setMessages, setDialogs } from '../../../redux/message-reducer';
 import { getAuthUserThunkCreator } from '../../../redux/auth-reducer';
 import { connect } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
 class DialogsAPIComponent extends React.Component {
     componentDidMount() {
@@ -23,17 +24,17 @@ class DialogsAPIComponent extends React.Component {
     onChangeMessage = (text) => this.props.updateNewMessageText(text);
 
     render() {
-        return this.props.auth.isAuth && this.props.auth.login !== null
-        ? <Dialogs 
+        if (!this.props.auth.isAuth) return <Navigate to={'/login'} />
+        return <Dialogs 
             messagePage={this.props.messagePage}
             onChangeMessage={this.onChangeMessage}
             sendMessage={this.sendMessage}
         />
-        : <div>Вы не автаризованы</div>
     };
 };
 
 const mapStateToProps = (state) => ({ messagePage: state.messagePage, auth: state.auth });
+
 const dispatch = {
     addMessage,
     updateNewMessageText,

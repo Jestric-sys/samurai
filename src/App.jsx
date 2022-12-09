@@ -10,6 +10,7 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import ProfileContainer from './components/content/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import SettingsContainer from './components/content/Settings/SettingsContainer';
+import Login from './components/content/Login/Login';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
             <Route path='/settings/*' element={<SettingsContainer />} />
             <Route path='/users' element={<UsersContainer />} />
             <Route path='/*' element={<Error />} />
+            <Route path='/login' element={<Login />} />
           </Routes>
         </div>
       </div>
