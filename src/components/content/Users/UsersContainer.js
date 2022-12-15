@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import Users from './Users';
 import PreLoader from '../../common/preloader/Preloader';
 import { getAuthUserThunkCreator } from '../../../redux/auth-reducer';
-import { Navigate } from 'react-router-dom';
+import { withAuthRedirect } from '../../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 class UsersAPIComponent extends React.Component {
 
@@ -29,7 +30,6 @@ class UsersAPIComponent extends React.Component {
     };
 
     render() {
-        if (!this.props.auth.isAuth) return <Navigate to={'/login'} />
         return <>
             { this.props.isFetching ? <PreLoader /> : null }
             <Users 
@@ -72,6 +72,7 @@ const dispatch = {
     followUserThunkCreator
 };
 
-const UsersContainer = connect(mapStateToProps, dispatch)(UsersAPIComponent);
-
-export default UsersContainer;
+export default compose(
+    connect(mapStateToProps, dispatch),
+    withAuthRedirect
+)(UsersAPIComponent);

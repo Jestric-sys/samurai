@@ -3,7 +3,8 @@ import Dialogs from './Dialogs';
 import { addMessage, updateNewMessageText, setMessages, setDialogs } from '../../../redux/message-reducer';
 import { getAuthUserThunkCreator } from '../../../redux/auth-reducer';
 import { connect } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { withAuthRedirect } from '../../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 class DialogsAPIComponent extends React.Component {
     componentDidMount() {
@@ -24,7 +25,6 @@ class DialogsAPIComponent extends React.Component {
     onChangeMessage = (text) => this.props.updateNewMessageText(text);
 
     render() {
-        if (!this.props.auth.isAuth) return <Navigate to={'/login'} />
         return <Dialogs 
             messagePage={this.props.messagePage}
             onChangeMessage={this.onChangeMessage}
@@ -43,6 +43,7 @@ const dispatch = {
     getAuthUserThunkCreator
 };
 
-const DialogsContainer = connect(mapStateToProps, dispatch)(DialogsAPIComponent);
-
-export default DialogsContainer;
+export default compose(
+    connect(mapStateToProps, dispatch),
+    withAuthRedirect
+)(DialogsAPIComponent);
