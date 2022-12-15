@@ -2,6 +2,7 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import logo from '../../../../assets/images/logo.png';
 import PreLoader from '../../../common/preloader/Preloader';
+import ProfileStatus from './ProfileStatus/ProfileStatus';
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -10,9 +11,9 @@ const ProfileInfo = (props) => {
 
     return (
         <div>
-            <div className={s.profile_header}>
+            {/* <div className={s.profile_header}>
                 <img src="https://steamuserimages-a.akamaihd.net/ugc/1691652784003611560/9368476CF11779DC22928537B592068DD3A0F836/" alt="img content" />
-            </div>
+            </div> */}
             <div className={s.name}>
                 <h1>{ props.profile.fullName }</h1>
             </div>
@@ -24,6 +25,7 @@ const ProfileInfo = (props) => {
                     alt="avatar profile" 
                 />
                 <div>
+                    <ProfileStatus status={'Hello my friends'} />
                     <div className={s.aboutMe}>
                         <span className={s.titleAboutMe}>Обо мне:</span>
                         <span>{ props.profile.aboutMe ? props.profile.aboutMe : '...' }</span>

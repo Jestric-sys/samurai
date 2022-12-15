@@ -33,6 +33,6 @@ const dispatch = { setUserProfile, getAuthUserThunkCreator };
 
 export default compose(
     connect(mapStateToProps, dispatch),
-    withAuthRedirect,
+    //withAuthRedirect,
     withParamsRedirect
 )(ProfileComponent);
