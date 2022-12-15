@@ -4,7 +4,7 @@ import Profile from './Profile';
 import { setUserProfile } from '../../../redux/profile-reducer';
 import { getAuthUserThunkCreator } from '../../../redux/auth-reducer';
 import { usersAPI } from '../../../api/api';
-import { withAuthRedirect } from '../../../hoc/withAuthRedirect';
+import { withAuthRedirect, withParamsRedirect } from '../../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
 class ProfileComponent extends React.Component {
@@ -33,5 +33,6 @@ const dispatch = { setUserProfile, getAuthUserThunkCreator };
 
 export default compose(
     connect(mapStateToProps, dispatch),
-    withAuthRedirect
+    withAuthRedirect,
+    withParamsRedirect
 )(ProfileComponent);
