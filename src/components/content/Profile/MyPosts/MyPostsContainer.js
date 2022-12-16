@@ -11,7 +11,7 @@ class MyPostsAPIComponent extends React.Component {
         ]);
     };
 
-    sendPost = () => this.props.addPost();
+    sendPost = (post) => this.props.addPost(post);
 
     render() {
         return <MyPosts 
