@@ -11,9 +11,9 @@ const ProfileInfo = (props) => {
 
     return (
         <div>
-            {/* <div className={s.profile_header}>
+            <div className={s.profile_header}>
                 <img src="https://steamuserimages-a.akamaihd.net/ugc/1691652784003611560/9368476CF11779DC22928537B592068DD3A0F836/" alt="img content" />
-            </div> */}
+            </div>
             <div className={s.name}>
                 <h1>{ props.profile.fullName }</h1>
             </div>
@@ -25,21 +25,21 @@ const ProfileInfo = (props) => {
                     alt="avatar profile" 
                 />
                 <div>
-                    <ProfileStatus status={'Hello my friends'} />
+                    <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
                     <div className={s.aboutMe}>
                         <span className={s.titleAboutMe}>Обо мне:</span>
                         <span>{ props.profile.aboutMe ? props.profile.aboutMe : '...' }</span>
                     </div>
                     <div className={s.aboutMe}>
                         <span className={s.titleAboutMe}>Контакты:</span>
-                        <span>facebook - { props.profile.contacts.facebook ? props.profile.contacts.facebook : 'нет' }</span>
-                        <span>website - { props.profile.contacts.website ? props.profile.contacts.website : 'нет' }</span>
-                        <span>vk - { props.profile.contacts.vk ? props.profile.contacts.vk : 'нет' }</span>
-                        <span>twitter - { props.profile.contacts.twitter ? props.profile.contacts.twitter : 'нет' }</span>
-                        <span>instagram - { props.profile.contacts.instagram ? props.profile.contacts.instagram : 'нет' }</span>
-                        <span>youtube - { props.profile.contacts.youtube ? props.profile.contacts.youtube : 'нет' }</span>
-                        <span>github - { props.profile.contacts.github ? props.profile.contacts.github : 'нет' }</span>
-                        <span>mainLink - { props.profile.contacts.mainLink ? props.profile.contacts.mainLink : 'нет' }</span>
+                        <span>facebook - { props.profile.contacts.facebook || 'нет' }</span>
+                        <span>website - { props.profile.contacts.website || 'нет' }</span>
+                        <span>vk - { props.profile.contacts.vk || 'нет' }</span>
+                        <span>twitter - { props.profile.contacts.twitter || 'нет' }</span>
+                        <span>instagram - { props.profile.contacts.instagram || 'нет' }</span>
+                        <span>youtube - { props.profile.contacts.youtube || 'нет' }</span>
+                        <span>github - { props.profile.contacts.github || 'нет' }</span>
+                        <span>mainLink - { props.profile.contacts.mainLink || 'нет' }</span>
                     </div>
                     <div className={s.aboutMe}>
                         <span className={s.titleAboutMe}>Статус поиска работы:</span>

@@ -22,10 +22,26 @@ export const usersAPI = {
         return instance.post(`follow/${id}`); 
     },
     profileUserID(id) {
-        return instance.get(`profile/${id}`)
+        console.warn('Obsolete method. Please profileAPI object.');
+        return profileAPI.getProfile(id);
+    }
+};
+
+export const profileAPI = {
+    getProfile(userId) {
+        return instance.get(`profile/${userId}`)
             .then(res => {
                 return res.data;
             });
+    },
+    getStatus(userId) {
+        return instance.get(`profile/status/${userId}`)
+            .then(res => {
+                return res.data;
+            });
+    },
+    updateStatus(status) {
+        return instance.put('profile/status', { status });
     }
 };
 

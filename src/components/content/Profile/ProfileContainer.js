@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import Profile from './Profile';
 import { setUserProfile } from '../../../redux/profile-reducer';
 import { getAuthUserThunkCreator } from '../../../redux/auth-reducer';
-import { usersAPI } from '../../../api/api';
 import { withAuthRedirect, withParamsRedirect } from '../../../hoc/withAuthRedirect';
 import { compose } from 'redux';
+import { getUserProfileThunkCreate, getStatusProfileThunkCreate, putStatusProfileThunkCreate } from '../../../redux/profile-reducer';
 
 class ProfileComponent extends React.Component {
 
@@ -15,21 +15,18 @@ class ProfileComponent extends React.Component {
         if (!userID) {
             userID = 25638;
         };
-        usersAPI.profileUserID(userID)
-            .then(data => {
-                this.props.setUserProfile(data);
-            })
-            .catch(err => console.log(err));
+        this.props.getUserProfileThunkCreate(userID);
+        this.props.getStatusProfileThunkCreate(userID);
     };
 
     render() {
-        return <Profile profile={this.props.profile} />
+        return <Profile profile={this.props.profile} status={this.props.status} updateStatus={this.props.putStatusProfileThunkCreate} />
     };
 };
 
-const mapStateToProps = (state) => ({ profile: state.profilePage.profile, auth: state.auth });
+const mapStateToProps = (state) => ({ profile: state.profilePage.profile, status: state.profilePage.status });
 
-const dispatch = { setUserProfile, getAuthUserThunkCreator };
+const dispatch = { setUserProfile, getAuthUserThunkCreator, getUserProfileThunkCreate, getStatusProfileThunkCreate, putStatusProfileThunkCreate };
 
 export default compose(
     connect(mapStateToProps, dispatch),
