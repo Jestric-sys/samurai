@@ -1,6 +1,6 @@
 import React from 'react';
 import MyPosts from './MyPosts';
-import { addPost, updateNewPostText, setPosts } from '../../../../redux/profile-reducer';
+import { addPost, setPosts } from '../../../../redux/profile-reducer';
 import { connect } from 'react-redux';
 
 class MyPostsAPIComponent extends React.Component {
@@ -12,13 +12,11 @@ class MyPostsAPIComponent extends React.Component {
     };
 
     sendPost = () => this.props.addPost();
-    onPostChange = (text) => this.props.updateNewPostText(text);
 
     render() {
         return <MyPosts 
                     profilePage={this.props.profilePage}
                     sendPost={this.sendPost}
-                    onPostChange={this.onPostChange}
                 />
     };
 };
@@ -26,7 +24,6 @@ class MyPostsAPIComponent extends React.Component {
 const mapStateToProps = (state) => ({ profilePage: state.profilePage });
 const dispatch = {
     addPost,
-    updateNewPostText,
     setPosts
 };
 

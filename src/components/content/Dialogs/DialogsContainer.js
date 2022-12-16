@@ -1,6 +1,6 @@
 import React from 'react';
 import Dialogs from './Dialogs';
-import { addMessage, updateNewMessageText, setMessages, setDialogs } from '../../../redux/message-reducer';
+import { addMessage, setMessages, setDialogs } from '../../../redux/message-reducer';
 import { getAuthUserThunkCreator } from '../../../redux/auth-reducer';
 import { connect } from 'react-redux';
 import { withAuthRedirect } from '../../../hoc/withAuthRedirect';
@@ -21,13 +21,11 @@ class DialogsAPIComponent extends React.Component {
         ]);
     };
 
-    sendMessage = () => this.props.addMessage();
-    onChangeMessage = (text) => this.props.updateNewMessageText(text);
+    sendMessage = (message) => this.props.addMessage(message);
 
     render() {
         return <Dialogs 
             messagePage={this.props.messagePage}
-            onChangeMessage={this.onChangeMessage}
             sendMessage={this.sendMessage}
         />
     };
@@ -37,7 +35,6 @@ const mapStateToProps = (state) => ({ messagePage: state.messagePage, auth: stat
 
 const dispatch = {
     addMessage,
-    updateNewMessageText,
     setMessages,
     setDialogs,
     getAuthUserThunkCreator
